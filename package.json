@@ -8,8 +8,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --progress",
-    "heroku-prebuild": "yarn install --production=false"
+    "start": "webpack-dev-server --progress"
   },
   "eslintConfig": {},
   "browserslist": {
@@ -25,6 +24,6 @@
     ]
   },
   "devDependencies": {
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.11"
   }
 }
