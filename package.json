@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^4.0.7"
+    "@rails/webpacker": "^4.0.7",
+    "webpack": "^4.42.0"
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
