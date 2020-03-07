@@ -54,4 +54,8 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# 2020-0307 LS: removed platform references `, platforms: [:mingw, :mswin, :x64_mingw, :jruby]`
+# This will cause tzinfo to use tzinfo-data as its data source on all platforms 
+# instead of using the system time zone data. https://github.com/tzinfo/tzinfo-data/issues/12
+gem 'tzinfo-data'
+
