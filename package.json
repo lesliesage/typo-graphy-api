@@ -7,7 +7,11 @@
   },
   "private": true,
   "dependencies": {
+    "@rails/activestorage": "^6.0.2-1",
+    "@rails/ujs": "^6.0.2-1",
     "@rails/webpacker": "^4.0.7",
+    "channels": "^0.0.4",
+    "turbolinks": "^5.2.0",
     "webpack": "^4.42.0"
   },
   "scripts": {
