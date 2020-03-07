@@ -19,13 +19,6 @@
     "start": "webpack-dev-server --progress"
   },
   "eslintConfig": {},
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ]
-  },
   "devDependencies": {
     "webpack-cli": "^3.3.11"
   }
