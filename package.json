@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "typo-graphy-backend",
   "version": "0.1.0",
   "engines": {
     "node": "13.8.0",
