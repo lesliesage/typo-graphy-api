@@ -3,8 +3,24 @@ require './.Secrets.rb'
 class ApplicationController < ActionController::Base
     before_action :authorized
 
+    def get_correct_environments_secret
+        if SECRET_KEY
+            SECRET_KEY
+        else
+            ENV['SECRET_KEY_BASE']
+        end
+    end
+
+    def get_correct_environments_encryption_algo
+        if ENCRYPTION_ALGORITHM
+            ENCRYPTION_ALGORITHM
+        else
+            ENV['ENCRYPTION_ALGORITHM']
+        end
+    end
+
     def encode_token(payload)
-        JWT.encode(payload, SECRET_KEY, ENCRYPTION_ALGORITHM)
+        JWT.encode(payload, get_correct_environments_secret, get_correct_environments_encryption_algo)
     end
  
     def auth_header
@@ -16,7 +32,7 @@ class ApplicationController < ActionController::Base
         if !!auth_header
             token = auth_header.split(' ')[1]
             # header: { 'Authentication': 'Bearer <token>' }
-            JWT.decode(token, SECRET_KEY, true, {algorithm: ENCRYPTION_ALGORITHM})[0]
+            JWT.decode(token, get_correct_environments_secret, true, {algorithm: get_correct_environments_encryption_algo})[0]
         else
             nil
         end
