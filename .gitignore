@@ -23,8 +23,5 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# Secrets for generating token
-/.Secrets.rb
-
 # node modules
 /node_modules
