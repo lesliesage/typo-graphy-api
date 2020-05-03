@@ -1,3 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :snippets, only: [:index]
+  get '/queue', to: 'snippets#queue'
+  
+  post '/signup', to: 'users#create'
+  get '/profile', to: 'users#show'
+  put '/profile', to: 'users#update'
+  delete '/profile', to: 'users#destroy'
+  
+  resources :tests, only: [:create]
+  get '/medians', to: 'tests#medians'
+
+  resources :help_articles, only: [:index]
+
+  post '/login', to: 'auth#create'
 end

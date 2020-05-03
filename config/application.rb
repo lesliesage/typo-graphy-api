@@ -29,9 +29,15 @@ module TypoGraphy
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    # Only loads a smaller set of middleware suitable for API only apps.
-    # Middleware like session, flash, cookies can be added back manually.
-    # Skip views, helpers and assets when generating a new resource.
+    # https://stackoverflow.com/questions/19650621/heroku-upload-precompiling-assets-failed
+    config.assets.initialize_on_precompile = false
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :put, :patch, :delete, :options, :head]
+      end
+    end
     config.api_only = true
   end
 end
