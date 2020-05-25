@@ -18,15 +18,16 @@ class PasswordsController < ApplicationController
 
     def reset
         code = forgot_password_params[:code].to_s
-        user = User.find_by(reset_password_code: code)
+        @user = User.find_by(reset_password_code: code)
 
         if forgot_password_params[:email].blank?
             return render json: {error: 'Email not present'}
         end
 
-        if user.present? && user.password_code_valid?
-            if user.reset_password!(forgot_password_params[:password])
-                render json: {status: 'ok'}, status: :ok
+        if @user.email===forgot_password_params[:email] && @user.password_code_valid?
+            if @user.reset_password!(forgot_password_params[:password]) && @user.authenticate(forgot_password_params[:password])
+                token = encode_token({ user_id: @user.id })
+                render json: { user: @user.to_json(user_serializer), jwt: token }, status: :accepted
             else
                 render json: {error: users.errors.full_messages}, status: :unprocessable_entity
             end
