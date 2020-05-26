@@ -53,6 +53,25 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "typo_graphy_production"
 
+  # enable mailers according to https://medium.com/@pascales/welcome-email-for-new-user-using-action-mailer-becdb43ee6a
+  # see also https://dev.to/morinoko/sending-emails-in-rails-with-action-mailer-and-gmail-35g4
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_options = {from: Rails.application.credentials.gmail[:email]}
+  # (gmail specific)
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               'web.app', # TODO: is this right
+  user_name:            Rails.application.credentials.gmail[:email],
+  password:             Rails.application.credentials.gmail[:password],
+  authentication:       'plain',
+  enable_starttls_auto: true  }
+
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
