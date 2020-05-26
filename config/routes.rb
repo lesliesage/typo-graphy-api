@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   resources :help_articles, only: [:index]
 
   post '/login', to: 'auth#create'
+
+  post '/forgot', to: 'passwords#forgot'
+  post '/reset', to: 'passwords#reset'
 end
